@@ -7,6 +7,9 @@ const button1 = document.getElementById("btn-1");
 //the length of the password
 const passwordLength = 15;
 
+const copy1 = document.getElementById("copy1");
+const copy2 = document.getElementById("copy2");
+
 //this event listener triggers the passwordReset and passwordGenerator functions when a user clicks the "generate passwords" button
 button1.addEventListener("click", function () {
   passwordReset();
@@ -28,6 +31,21 @@ function passwordReset() {
   outputOne.value = "";
   outputTwo.value = "";
 }
+
+//copy to clipboard function
+function copyToClipBoard(password) {
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(password.value);
+  alert("Password copied to clipboard");
+}
+
+copy1.addEventListener("click", function () {
+  copyToClipBoard(outputOne);
+});
+
+copy2.addEventListener("click", function () {
+  copyToClipBoard(outputTwo);
+});
 
 //these characters are used to generate the random password
 const characters = [
