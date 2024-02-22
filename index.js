@@ -75,7 +75,7 @@ function getCharacters() {
 function copyToClipBoard(password) {
   // Copy the text inside the text field
   if (navigator.clipboard.writeText(password.value)) {
-    copyMessage.innerHTML = "Password copied to clipboard";
+    copyMessage.innerHTML = "Password copied";
   } else {
     copyMessage.innerHTML = "";
   }
@@ -98,7 +98,7 @@ rangeInput.addEventListener("input", (e) => {
 // listener triggers the passwordReset and passwordGenerator functions when a user clicks the "generate passwords" button
 generateBtn.addEventListener("click", () => {
   if (!atLeastOneCheckboxChecked(checkboxes)) {
-    validationMessage.innerHTML = "At least once checkbox must be checked";
+    validationMessage.innerHTML = "Please select a checkbox";
     return;
   } else {
     passwordReset();
