@@ -52,109 +52,57 @@ function getCharacters() {
 //copy to clipboard function
 function copyToClipBoard(password) {
   // Copy the text inside the text field
-  navigator.clipboard.writeText(password.value);
-  alert("Password copied to clipboard");
+  if (navigator.clipboard.writeText(password.value)) {
+    copyMessage.innerHTML = "Password copied to clipboard";
+  } else {
+    copyMessage.innerHTML = "";
+  }
+  return;
 }
 
-copy1.addEventListener("click", function () {
+//check if at least one checkbox is ticked
+function atLeastOneCheckboxChecked(checkboxes) {
+  return Array.from(checkboxes).some((checkbox) => checkbox.checked);
+}
+
+//reset all input fields and called passwordGenerator function
+function resetAll() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  if (!atLeastOneCheckboxChecked(checkboxes)) {
+    validationMessage.innerHTML = "At least one checkbox must be checked";
+    return;
+  } else {
+    passwordReset();
+    copyMessageReset();
+    validationMessageReset();
+    passwordGenerator();
+  }
+}
+
+// set number and range inputs equal to each other
+numberInput.addEventListener("input", (e) => {
+  rangeInput.value = e.target.value;
+});
+rangeInput.addEventListener("input", (e) => {
+  numberInput.value = e.target.value;
+});
+
+// trigger the reset functions when a user clicks the "generate" icon
+document.getElementById("btn-1").addEventListener("click", () => {
+  resetAll();
+});
+
+document.getElementById("copy1").addEventListener("click", function () {
   copyToClipBoard(outputOne);
 });
 
-copy2.addEventListener("click", function () {
-  copyToClipBoard(outputTwo);
+document.getElementById("copy2").addEventListener("click", function () {
+  copyToClipBoard(outputOne);
 });
 
-//these characters are used to generate the random password
-const characters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "~",
-  "`",
-  "!",
-  "@",
-  "#",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "(",
-  ")",
-  "_",
-  "-",
-  "+",
-  "=",
-  "{",
-  "[",
-  "}",
-  "]",
-  ",",
-  "|",
-  ":",
-  ";",
-  "<",
-  ">",
-  ".",
-  "?",
-  "/",
-];
+//check if at least one textbox is checkbox
+// trigger the reset functions when a user clicks the "generate passwords" button
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  resetAll();
+});
