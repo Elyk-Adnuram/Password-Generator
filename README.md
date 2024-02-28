@@ -1,3 +1,23 @@
+
 # Password Generator
 
-Designed with a mobile first approach. This application generates a password based on the selected inclusion options chosen by the user. 
+This application generates a random password based on the selected inclusion options chosen by the user. 
+
+
+## Tech Stack
+
+**Client:** Javascript, HTML5, Vanilla CSS
+
+
+
+
+## Deployment
+
+Live version can be viewed at: https://elyk-adnuram.github.io/Password-Generator/
+
+
+## Lessons Learned
+
+What did you learn while building this project? What challenges did you face and how did you overcome them?
+
+Learned how to use the Window: navigator property to copy data to the clipboard. Learned how to implement the Array.from and Array.some methods to ensure that a checkbox is ticked before attempting to generate a password. Encounted a Merge conflict in Git and used the Git documentation to resolve the conflict. 
