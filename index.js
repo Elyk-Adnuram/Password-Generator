@@ -20,7 +20,6 @@ function passwordGenerator() {
   const passwordLengthValue = document.getElementById("length").value;
   let randomIndex = 0;
   let result = getCharacters();
-  console.log(result);
   for (let i = 0; i < passwordLengthValue; i++) {
     randomIndex = Math.floor(Math.random() * result.length);
     outputOne.textContent += result[randomIndex];
