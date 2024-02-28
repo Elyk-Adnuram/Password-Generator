@@ -1,143 +1,108 @@
-//grab the output1 field from the DOM
-const outputOne = document.getElementById("output1");
-//grab the output2 field from the DOM
-const outputTwo = document.getElementById("output2");
-//grab the generate passwords button from the DOM
-const button1 = document.getElementById("btn-1");
-//the length of the password
-const passwordLength = 15;
+//importing required characters for character set object
+import { numbers, symbols, lowercaseLetters, uppercaseLetters } from "./characters.js";
 
-const copy1 = document.getElementById("copy1");
-const copy2 = document.getElementById("copy2");
+//grabbing elements from the DOM
+const outputOne = document.getElementById("display-password");
+const numberInput = document.querySelector(".inputNumber");
+const rangeInput = document.querySelector(".inputRange");
+const validationMessage = document.getElementById("validation-message");
+const copyMessage = document.getElementById("copy-message");
 
-//this event listener triggers the passwordReset and passwordGenerator functions when a user clicks the "generate passwords" button
-button1.addEventListener("click", function () {
-  passwordReset();
-  passwordGenerator();
-});
+//object where keys represent character types
+const characterSets = {
+  upper: uppercaseLetters,
+  lower: lowercaseLetters,
+  number: numbers,
+  symbols: symbols,
+};
 
-//this function loops through the characters array and selects 15 random characters that are displayed in the output fields
 function passwordGenerator() {
-  for (let i = 0; i < passwordLength; i++) {
-    let randomIndex = Math.floor(Math.random() * characters.length);
-    let randomIndex2 = Math.floor(Math.random() * characters.length);
-    outputOne.textContent += characters[randomIndex];
-    outputTwo.textContent += characters[randomIndex2];
+  const passwordLengthValue = document.getElementById("length").value;
+  let randomIndex = 0;
+  let result = getCharacters();
+  console.log(result);
+  for (let i = 0; i < passwordLengthValue; i++) {
+    randomIndex = Math.floor(Math.random() * result.length);
+    outputOne.textContent += result[randomIndex];
   }
 }
 
 //this function resets the output value to an empty string after each password is generated
 function passwordReset() {
-  outputOne.value = "";
-  outputTwo.value = "";
+  outputOne.innerHTML = "";
+}
+
+function copyMessageReset() {
+  copyMessage.innerHTML = "";
+}
+
+function validationMessageReset() {
+  validationMessage.innerHTML = "";
+}
+
+//iterate through checked checkboxes and obtain relevant character types
+function getCharacters() {
+  const selectedSets = ["upper", "lower", "number", "symbols"].filter(
+    (setName) => document.getElementById(`${setName}Inp`).checked
+  );
+
+  return selectedSets.map((setName) => characterSets[setName]).flat();
 }
 
 //copy to clipboard function
 function copyToClipBoard(password) {
   // Copy the text inside the text field
-  navigator.clipboard.writeText(password.value);
-  alert("Password copied to clipboard");
+  if (navigator.clipboard.writeText(password.value)) {
+    copyMessage.innerHTML = "Password copied to clipboard";
+  } else {
+    copyMessage.innerHTML = "";
+  }
+  return;
 }
 
-copy1.addEventListener("click", function () {
+//check if at least one checkbox is ticked
+function atLeastOneCheckboxChecked(checkboxes) {
+  return Array.from(checkboxes).some((checkbox) => checkbox.checked);
+}
+
+//reset all input fields and called passwordGenerator function
+function resetAll() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  if (!atLeastOneCheckboxChecked(checkboxes)) {
+    validationMessage.innerHTML = "At least one checkbox must be checked";
+    return;
+  } else {
+    passwordReset();
+    copyMessageReset();
+    validationMessageReset();
+    passwordGenerator();
+  }
+}
+
+// set number and range inputs equal to each other
+numberInput.addEventListener("input", (e) => {
+  rangeInput.value = e.target.value;
+});
+rangeInput.addEventListener("input", (e) => {
+  numberInput.value = e.target.value;
+});
+
+// trigger the reset functions when a user clicks the "generate" icon
+document.getElementById("btn-1").addEventListener("click", () => {
+  resetAll();
+});
+
+document.getElementById("copy1").addEventListener("click", function () {
   copyToClipBoard(outputOne);
 });
 
-copy2.addEventListener("click", function () {
-  copyToClipBoard(outputTwo);
+document.getElementById("copy2").addEventListener("click", function () {
+  copyToClipBoard(outputOne);
 });
 
-//these characters are used to generate the random password
-const characters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "~",
-  "`",
-  "!",
-  "@",
-  "#",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "(",
-  ")",
-  "_",
-  "-",
-  "+",
-  "=",
-  "{",
-  "[",
-  "}",
-  "]",
-  ",",
-  "|",
-  ":",
-  ";",
-  "<",
-  ">",
-  ".",
-  "?",
-  "/",
-];
+//check if at least one textbox is checkbox
+// trigger the reset functions when a user clicks the "generate passwords" button
+document.querySelector("form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  resetAll();
+});
