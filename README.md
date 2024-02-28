@@ -1,3 +1,3 @@
 # Password Generator
 
-## This is a application built with Javascript, CSS3 and HTML5. The app generates two random 15 character passwords each time the user clicks the "generate passwords" button.
+Designed with a mobile first approach. This application generates a password based on the selected inclusion options chosen by the user. 
