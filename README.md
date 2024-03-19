@@ -20,4 +20,4 @@ Live version can be viewed at: https://elyk-adnuram.github.io/Password-Generator
 
 What did you learn while building this project? What challenges did you face and how did you overcome them?
 
-Learned how to use the Window: navigator property to copy data to the clipboard. Learned how to implement the Array.from and Array.some methods to ensure that a checkbox is ticked before attempting to generate a password. Encounted a Merge conflict in Git and used the Git documentation to resolve the conflict. 
+Learned how to use the Window: navigator property to copy data to the clipboard. Learned how to implement the Array.from and Array.some methods to ensure that a checkbox is ticked before attempting to generate a password. Encounted a Merge conflict in Git and used the Git documentation to resolve the conflict.
