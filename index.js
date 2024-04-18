@@ -68,7 +68,7 @@ function atLeastOneCheckboxChecked(checkboxes) {
 function resetAll() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   if (!atLeastOneCheckboxChecked(checkboxes)) {
-    validationMessage.innerHTML = "At least one checkbox must be checked";
+    validationMessage.innerHTML = "Please select an option from the above";
     return;
   } else {
     passwordReset();
