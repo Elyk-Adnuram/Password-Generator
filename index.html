@@ -16,14 +16,14 @@
   </head>
   <body>
     <header>
-      <h1 id="header1">Generate a random password</h1>
+      <h1 id="header1">Svalbard Password Generator</h1>
     </header>
     <form>
       <output id="output1" class="password-output"
         ><output class="display-password" id="display-password"></output>
         <span class="display-icons">
-          <i class="fa-regular fa-copy fa-xl" id="copy1"></i
-          ><i class="fa-solid fa-arrows-rotate fa-xl" id="btn-1"></i>
+          <i class="fa-regular fa-copy fa-xl" id="copy1" title="Copy to clipboard"></i
+          ><i class="fa-solid fa-arrows-rotate fa-xl" id="btn-1" title="Generate new password"></i>
         </span>
       </output>
       <h2 class="customize-heading">Customize your password</h2>
@@ -66,7 +66,6 @@
       <h3 id="validation-message"></h3>
       <button type="submit" class="copy-btn">Generate Password</button>
     </form>
-    <button id="copy2" class="copy-btn">Copy Password</button>
     <h3 id="copy-message"></h3>
     <script src="index.js" type="module"></script>
   </body>

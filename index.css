@@ -1,23 +1,32 @@
+:root {
+  --primary-color: #20a4f3;
+  --background-color: #72c6ef;
+  --text-color: #1c1c1c;
+  --border-radius: 8px;
+  --spacing-unit: 0.5rem;
+}
+
 body {
-  margin: 5em auto;
-  font-family: "acumin-pro", Arial, Helvetica, sans-serif;
-  background-color: #aee1f5;
-  color: #1c1c1c;
-  box-sizing: border-box;
+  margin: 0;
+  padding: var(--spacing-unit);
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--background-color);
+  background: linear-gradient(#72c6ef, #004e8f);
+  color: var(--text-color);
   text-align: center;
-  line-height: 1.9;
+  line-height: 1.5;
   letter-spacing: 1px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 480px;
-  margin: 5em auto;
-  width: 480px;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
 }
 
 .password-output {
-  border: 3px inset #ffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: whitesmoke;
+  padding: 1rem;
   min-height: 40px;
   width: 100%;
   min-width: 350px;
@@ -25,10 +34,6 @@ body {
   max-width: max-content;
   font-weight: bold;
   text-align: center;
-  padding: 0.5em;
-  margin: 0.5em auto;
-  display: flex;
-  justify-content: space-between;
   font-size: large;
   gap: 0.3em;
 }
@@ -36,6 +41,8 @@ body {
 #header1 {
   font-weight: bold;
   letter-spacing: 1.2px;
+  margin: 0;
+  padding: 0;
 }
 
 .customize-heading {
@@ -46,7 +53,7 @@ body {
 
 .copy-btn {
   border-radius: 5px;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
   padding: 1em;
   color: #20a4f3;
   border: none;
@@ -106,30 +113,10 @@ body {
 #btn1:hover {
   cursor: pointer;
 }
-.customize-password {
-  display: flex;
-  flex-direction: row;
-  gap: 3em;
-  justify-content: space-evenly;
-  border: 3px inset #ffff;
-  background-color: whitesmoke;
-  border-radius: 5px;
-}
 
-.display-password {
-  font-size: 1rem;
-  font-weight: bolder;
-}
 .checkbox-area,
 .length-area {
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
-}
-
-.checkbox-area div {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
   gap: 0.25em;
 }

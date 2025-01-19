@@ -17,26 +17,22 @@ const characterSets = {
 };
 
 function passwordGenerator() {
-  const passwordLengthValue = document.getElementById("length").value;
-  let randomIndex = 0;
-  let result = getCharacters();
-  for (let i = 0; i < passwordLengthValue; i++) {
-    randomIndex = Math.floor(Math.random() * result.length);
-    outputOne.textContent += result[randomIndex];
+  try {
+    const passwordLengthValue = document.getElementById("length").value;
+    let randomIndex = 0;
+    let result = getCharacters();
+    for (let i = 0; i < passwordLengthValue; i++) {
+      randomIndex = Math.floor(Math.random() * result.length);
+      outputOne.textContent += result[randomIndex];
+    }
+  } catch (error) {
+    console.error("An error has occurred:", error);
   }
 }
 
 //this function resets the output value to an empty string after each password is generated
-function passwordReset() {
-  outputOne.innerHTML = "";
-}
-
-function copyMessageReset() {
-  copyMessage.innerHTML = "";
-}
-
-function validationMessageReset() {
-  validationMessage.innerHTML = "";
+function reset(resetItem) {
+  resetItem.innerHTML = "";
 }
 
 //iterate through checked checkboxes and obtain relevant character types
@@ -71,9 +67,9 @@ function resetAll() {
     validationMessage.innerHTML = "Please select an option from the above";
     return;
   } else {
-    passwordReset();
-    copyMessageReset();
-    validationMessageReset();
+    reset(outputOne);
+    reset(copyMessage);
+    reset(validationMessage);
     passwordGenerator();
   }
 }
@@ -92,10 +88,6 @@ document.getElementById("btn-1").addEventListener("click", () => {
 });
 
 document.getElementById("copy1").addEventListener("click", function () {
-  copyToClipBoard(outputOne);
-});
-
-document.getElementById("copy2").addEventListener("click", function () {
   copyToClipBoard(outputOne);
 });
 
